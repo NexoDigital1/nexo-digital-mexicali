@@ -41,6 +41,7 @@ export const NfcStartModal: React.FC<NfcStartModalProps> = ({
   const [hasTapped, setHasTapped] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [qrMode, setQrMode] = useState<'vcard_offline' | 'web_online'>('vcard_offline');
+  const [cardFinish, setCardFinish] = useState<'titanium_obsidian' | 'ceramic_white'>('titanium_obsidian');
   const [nfcWriteStatus, setNfcWriteStatus] = useState<string | null>(null);
   const [nfcWriteSuccess, setNfcWriteSuccess] = useState<boolean | undefined>(undefined);
 
@@ -133,6 +134,30 @@ export const NfcStartModal: React.FC<NfcStartModalProps> = ({
             {/* Left Column: 3D Luxury Card Simulation (Col 7) */}
             <div className="lg:col-span-7 flex flex-col items-center">
               
+              {/* Card Finish Selector */}
+              <div className="flex items-center gap-1.5 mb-3 bg-white/5 border border-white/10 p-1 rounded-full select-none text-[11px]">
+                <button
+                  onClick={() => setCardFinish('titanium_obsidian')}
+                  className={`px-3 py-1 rounded-full font-bold transition-all cursor-pointer ${
+                    cardFinish === 'titanium_obsidian'
+                      ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-md shadow-red-950 border border-red-400/40'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  ⚡ Titanio Obsidian iOS 27
+                </button>
+                <button
+                  onClick={() => setCardFinish('ceramic_white')}
+                  className={`px-3 py-1 rounded-full font-semibold transition-all cursor-pointer ${
+                    cardFinish === 'ceramic_white'
+                      ? 'bg-white text-slate-900 shadow-md font-bold'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  💎 Cerámica Blanca
+                </button>
+              </div>
+
               {/* 3D Perspective Card Container with True Flip */}
               <div 
                 className="relative w-full max-w-[360px] aspect-[1.586/1] select-none [perspective:1200px]"
@@ -159,9 +184,13 @@ export const NfcStartModal: React.FC<NfcStartModalProps> = ({
                     isFlipped ? '[transform:rotateY(180deg)]' : '[transform:rotateY(0deg)]'
                   }`}
                 >
-                  {/* FRONT FACE (White Luxury + Metallic Red + Chrome Foil) */}
+                  {/* FRONT FACE (Titanio Obsidian iOS 27 or Cerámica Blanca) */}
                   <div 
-                    className="absolute inset-0 w-full h-full rounded-2xl bg-gradient-to-tr from-slate-100 via-white to-slate-200 text-slate-900 p-6 flex flex-col justify-between shadow-2xl border border-white/90 overflow-hidden card-shine [backface-visibility:hidden]"
+                    className={`absolute inset-0 w-full h-full rounded-2xl p-6 flex flex-col justify-between shadow-2xl overflow-hidden card-shine [backface-visibility:hidden] transition-all duration-300 ${
+                      cardFinish === 'titanium_obsidian'
+                        ? 'bg-gradient-to-tr from-[#06070a] via-[#101322] to-[#050608] text-white border border-white/20 shadow-[0_15px_40px_rgba(225,29,72,0.35)]'
+                        : 'bg-gradient-to-tr from-slate-100 via-white to-slate-200 text-slate-900 border border-white/90'
+                    }`}
                   >
                     {/* Metallic red corner accent */}
                     <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-red-600 via-red-700 to-transparent opacity-90 [clip-path:polygon(100%_0,0_0,100%_100%)] flex items-start justify-end p-2.5">
@@ -173,13 +202,17 @@ export const NfcStartModal: React.FC<NfcStartModalProps> = ({
                       <img 
                         src={profile.logoUrl} 
                         alt="Logo" 
-                        className="w-12 h-12 rounded-xl object-cover border-2 border-red-600 shadow-md"
+                        className={`w-12 h-12 rounded-xl object-cover border-2 shadow-md ${
+                          cardFinish === 'titanium_obsidian' ? 'border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)]' : 'border-red-600'
+                        }`}
                       />
                       <div>
-                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-red-600 block">
+                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-red-500 block">
                           NEXO START • NFC
                         </span>
-                        <h4 className="font-extrabold text-base sm:text-lg text-slate-900 leading-tight">
+                        <h4 className={`font-extrabold text-base sm:text-lg leading-tight ${
+                          cardFinish === 'titanium_obsidian' ? 'text-white' : 'text-slate-900'
+                        }`}>
                           {profile.businessName}
                         </h4>
                       </div>
@@ -193,29 +226,41 @@ export const NfcStartModal: React.FC<NfcStartModalProps> = ({
                           <div className="absolute w-full h-[1px] bg-amber-800/30"></div>
                         </div>
                         {/* Glowing micro-indicator */}
-                        <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-600 animate-ping"></div>
+                        <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-600 shadow-[0_0_8px_rgba(239,68,68,0.9)] animate-ping"></div>
                       </div>
-                      <div className="flex items-center gap-1.5 text-[9px] font-mono tracking-widest text-slate-600 uppercase bg-slate-200/60 px-2 py-0.5 rounded-md">
-                        <Wifi className="w-3 h-3 text-red-600" />
+                      <div className={`flex items-center gap-1.5 text-[9px] font-mono tracking-widest uppercase px-2.5 py-0.5 rounded-md ${
+                        cardFinish === 'titanium_obsidian'
+                          ? 'text-red-300 bg-red-950/70 border border-red-500/30 font-bold'
+                          : 'text-slate-600 bg-slate-200/60'
+                      }`}>
+                        <Wifi className="w-3 h-3 text-red-500" />
                         <span>NTAG216 CHIP</span>
                       </div>
                     </div>
 
                     {/* Card Bottom: Cardholder & Region */}
-                    <div className="flex items-end justify-between pt-2 border-t border-slate-300/60">
+                    <div className={`flex items-end justify-between pt-2 border-t ${
+                      cardFinish === 'titanium_obsidian' ? 'border-white/10' : 'border-slate-300/60'
+                    }`}>
                       <div>
-                        <p className="text-[11px] font-black uppercase text-slate-900 tracking-wide font-heading">
+                        <p className={`text-[11px] font-black uppercase tracking-wide font-heading ${
+                          cardFinish === 'titanium_obsidian' ? 'text-white' : 'text-slate-900'
+                        }`}>
                           {profile.ownerName}
                         </p>
-                        <p className="text-[10px] text-slate-600 truncate max-w-[200px]">
+                        <p className={`text-[10px] truncate max-w-[200px] ${
+                          cardFinish === 'titanium_obsidian' ? 'text-slate-300' : 'text-slate-600'
+                        }`}>
                           {profile.industry}
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-[9px] font-mono font-bold text-slate-700 uppercase">
+                        <p className={`text-[9px] font-mono font-bold uppercase ${
+                          cardFinish === 'titanium_obsidian' ? 'text-slate-300' : 'text-slate-700'
+                        }`}>
                           MEXICALI, B.C.
                         </p>
-                        <p className="text-[8px] text-red-700 font-bold uppercase tracking-wider">
+                        <p className="text-[8px] text-red-500 font-extrabold uppercase tracking-wider">
                           NEXO DIGITAL
                         </p>
                       </div>

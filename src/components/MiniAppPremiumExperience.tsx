@@ -26,7 +26,10 @@ import {
   ArrowRight, 
   Plus, 
   Play, 
-  SlidersHorizontal 
+  SlidersHorizontal,
+  Signal,
+  BatteryCharging,
+  Zap
 } from 'lucide-react';
 import { generateQrDataUrl } from '../utils/qrUtils';
 
@@ -50,6 +53,20 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedMedia, setSelectedMedia] = useState<GalleryItem | null>(null);
+
+  // iOS 27 Real-time Status & Dynamic Island State
+  const [clockTime, setClockTime] = useState('14:24');
+  const [islandExpanded, setIslandExpanded] = useState(false);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      setClockTime(now.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', hour12: false }));
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 15000);
+    return () => clearInterval(interval);
+  }, []);
 
   // NFC & QR Access modal state
   const [showAccessModal, setShowAccessModal] = useState(false);
@@ -308,66 +325,139 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
           </div>
         </div>
 
-        {/* Smartphone Shell / Canvas */}
-        <div className={`w-full flex-1 bg-[#0b0c10] border-2 border-slate-700/80 rounded-[36px] shadow-2xl overflow-hidden flex flex-col relative ${
-          !isFullScreen ? 'shadow-red-950/40' : ''
+        {/* Smartphone Shell / Canvas - iOS 27 Liquid Glass Obsidian */}
+        <div className={`w-full flex-1 bg-gradient-to-b from-[#06070a] via-[#090b14] to-[#040508] border-2 border-slate-700/70 rounded-[44px] shadow-2xl overflow-hidden flex flex-col relative ${
+          !isFullScreen ? 'shadow-[0_25px_60px_-15px_rgba(225,29,72,0.35)] ring-1 ring-white/10' : ''
         }`}>
           
-          {/* iOS Dynamic Island / Android Punch Hole */}
+          {/* iOS 27 Status Bar & Interactive Dynamic Island */}
           {!isFullScreen && (
-            <div className="w-full pt-3 pb-1 flex justify-center bg-[#090a0d] border-b border-white/5 relative z-30 select-none">
-              <div className="w-24 h-4 bg-black rounded-full flex items-center justify-between px-2 border border-white/10">
-                <div className="w-2 h-2 rounded-full bg-slate-900 border border-slate-700" />
+            <div className="w-full pt-3 pb-2 px-5 flex items-center justify-between bg-black/70 backdrop-blur-2xl border-b border-white/5 relative z-30 select-none">
+              {/* Left: Mexicali Time Clock */}
+              <div className="flex items-center gap-1.5 pl-1">
+                <span className="text-[12px] font-bold text-white tracking-tight font-sans">
+                  {clockTime}
+                </span>
+                <span className="text-[9px] font-mono text-red-400 font-semibold uppercase">MXL</span>
+              </div>
+
+              {/* Center: Interactive iOS 27 Dynamic Island Pro */}
+              <div 
+                onClick={() => setIslandExpanded(!islandExpanded)}
+                title="Toca para expandir Dynamic Island"
+                className={`bg-black/95 border border-white/20 rounded-full flex items-center justify-between transition-all duration-300 cursor-pointer shadow-lg shadow-black/80 hover:border-red-500/80 active:scale-95 ${
+                  islandExpanded ? 'w-64 px-3 py-1.5' : 'w-28 h-6 px-2.5'
+                }`}
+              >
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.9)] animate-pulse" />
+                  <span className="text-[9px] font-mono text-slate-200 font-bold uppercase tracking-wider">
+                    {islandExpanded ? 'NEXO MEXICALI' : 'NEXO'}
+                  </span>
+                </div>
+
+                {islandExpanded ? (
+                  <span className="text-[9px] text-red-400 font-mono font-bold flex items-center gap-1">
+                    <Wifi className="w-2.5 h-2.5 text-red-400" />
+                    <span>NTAG216 ACTIVO</span>
+                  </span>
+                ) : (
+                  <div className="flex items-center gap-1">
+                    <span className="w-1 h-2 bg-red-500/80 rounded-full animate-bounce [animation-delay:100ms]" />
+                    <span className="w-1 h-3 bg-red-500 rounded-full animate-bounce [animation-delay:200ms]" />
+                    <span className="w-1 h-1.5 bg-red-400/80 rounded-full animate-bounce [animation-delay:300ms]" />
+                  </div>
+                )}
+              </div>
+
+              {/* Right: Cellular Signal, WiFi, Battery */}
+              <div className="flex items-center gap-2 text-white pr-1">
+                <Signal className="w-3.5 h-3.5 text-slate-200" />
+                <Wifi className="w-3.5 h-3.5 text-slate-200" />
                 <div className="flex items-center gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[8px] font-mono text-slate-400">NEXO</span>
+                  <span className="text-[10px] font-mono font-bold text-slate-200">98%</span>
+                  <div className="w-4 h-2.5 rounded-[3px] border border-slate-300/80 p-0.5 flex items-center">
+                    <div className="w-full h-full bg-emerald-400 rounded-2xs" />
+                  </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Main App Header with Cover and Business Identity */}
-          <div className="relative flex-shrink-0 bg-[#12141c] border-b border-white/10">
+          {/* Interactive Dynamic Island Expanded Widget */}
+          {islandExpanded && !isFullScreen && (
+            <div className="w-full px-4 py-2.5 bg-gradient-to-r from-black/95 via-red-950/60 to-black/95 border-b border-red-500/40 text-white flex items-center justify-between text-xs animate-in slide-in-from-top-2 duration-200 z-30">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-xl bg-red-600/30 border border-red-500/50 flex items-center justify-center">
+                  <Wifi className="w-4 h-4 text-red-400 animate-pulse" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold text-white leading-tight">Chip NFC NDEF vCard Vinculado</p>
+                  <p className="text-[9px] text-slate-300">Demostración en vivo para comercios de Mexicali</p>
+                </div>
+              </div>
+              <button
+                onClick={() => {
+                  setIslandExpanded(false);
+                  onOpenNfcDemo();
+                }}
+                className="px-2.5 py-1 rounded-xl bg-red-600 hover:bg-red-500 text-white text-[10px] font-bold shadow-md shadow-red-950 transition-colors cursor-pointer"
+              >
+                Ver Tarjeta 3D
+              </button>
+            </div>
+          )}
+
+          {/* Main App Header with Cover and Business Identity (iOS 27 Liquid Glass) */}
+          <div className="relative flex-shrink-0 bg-gradient-to-b from-[#080910] to-[#0e111d] border-b border-white/10 ios27-specular">
             {/* Cover photo banner */}
-            <div className="h-28 sm:h-32 w-full relative overflow-hidden">
+            <div className="h-28 sm:h-34 w-full relative overflow-hidden">
               <img
                 src={profile.coverUrl}
                 alt={profile.businessName}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-105 filter brightness-95"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b0c10] via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#06070a] via-black/40 to-transparent" />
               
-              {/* Quick status pill */}
-              <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/15 flex items-center gap-1.5 text-[10px] text-white">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                <span>{profile.isOpenNow ? 'Abierto en Mexicali' : 'Cerrado ahora'}</span>
+              {/* iOS 27 Liquid Status Pill */}
+              <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-2xl px-3 py-1 rounded-full border border-white/20 flex items-center gap-2 text-[10px] text-white shadow-lg">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)] animate-pulse"></span>
+                <span className="font-semibold">{profile.isOpenNow ? 'Abierto en Mexicali' : 'Cerrado ahora'}</span>
+              </div>
+
+              {/* iOS 27 Mode Tag */}
+              <div className="absolute top-3 right-3 bg-red-950/80 backdrop-blur-2xl px-2.5 py-1 rounded-full border border-red-500/50 flex items-center gap-1.5 text-[9px] font-mono text-red-300 font-bold shadow-lg">
+                <Sparkles className="w-3 h-3 text-red-400" />
+                <span>INTERFAZ iOS 27</span>
               </div>
             </div>
 
             {/* Profile info overlap */}
-            <div className="px-4 pb-3 -mt-9 relative z-10 flex items-end justify-between">
-              <div className="flex items-end gap-3">
-                <img
-                  src={profile.logoUrl}
-                  alt={profile.businessName}
-                  className="w-16 h-16 rounded-2xl object-cover border-2 border-white shadow-xl bg-slate-800"
-                />
+            <div className="px-4 pb-3.5 -mt-10 relative z-10 flex items-end justify-between">
+              <div className="flex items-end gap-3.5">
+                <div className="relative">
+                  <img
+                    src={profile.logoUrl}
+                    alt={profile.businessName}
+                    className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl object-cover border-2 border-red-500/80 shadow-[0_0_25px_rgba(239,68,68,0.4)] bg-slate-900"
+                  />
+                  <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-red-600 text-white text-[10px] flex items-center justify-center font-bold border-2 border-[#090b12] shadow-md">
+                    ✓
+                  </span>
+                </div>
                 <div className="pb-0.5">
                   <div className="flex items-center gap-1.5">
-                    <h3 className="font-extrabold text-white text-base leading-tight font-heading truncate max-w-[200px]">
+                    <h3 className="font-extrabold text-white text-base sm:text-lg leading-tight font-heading truncate max-w-[200px] tracking-tight">
                       {profile.businessName}
                     </h3>
-                    <span className="w-3.5 h-3.5 rounded-full bg-red-600 text-white text-[9px] flex items-center justify-center font-bold">
-                      ✓
-                    </span>
                   </div>
-                  <p className="text-[11px] text-slate-400 truncate max-w-[210px]">
+                  <p className="text-[11px] text-slate-300 truncate max-w-[210px] font-medium mt-0.5">
                     {profile.slogan}
                   </p>
                 </div>
               </div>
 
-              {/* Share Button */}
+              {/* Share Button (iOS 27 glass) */}
               <button
                 onClick={() => {
                   if (navigator.share) {
@@ -381,7 +471,7 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
                     alert('Enlace copiado al portapapeles');
                   }
                 }}
-                className="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
+                className="p-2.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 text-white transition-all cursor-pointer shadow-md hover:scale-105 active:scale-95"
                 title="Compartir Mini App"
               >
                 <Share2 className="w-4 h-4" />
@@ -389,71 +479,76 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
             </div>
           </div>
 
-          {/* Scrollable View Content based on Active Tab */}
-          <div className="flex-1 overflow-y-auto bg-[#0b0c10] text-slate-200">
+          {/* Scrollable View Content based on Active Tab (iOS 27 Obsidian Canvas) */}
+          <div className="flex-1 overflow-y-auto bg-gradient-to-b from-[#06070a] via-[#090b14] to-[#040508] text-slate-200 pb-24 relative">
             
             {/* ================= TAB 1: INICIO ================= */}
             {activeTab === 'home' && (
               <div className="p-4 space-y-5 animate-in fade-in duration-200">
-                {/* Presentation Card */}
-                <div className="bg-[#131622] p-4 rounded-2xl border border-white/10 space-y-2">
+                {/* Presentation Card - iOS 27 Liquid Glass */}
+                <div className="ios27-glass rounded-3xl p-4.5 space-y-2 border border-white/10 shadow-xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-red-600/10 rounded-full blur-2xl pointer-events-none" />
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-red-400 font-bold">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-red-400 font-black flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
                       {profile.industry}
                     </span>
-                    <span className="text-[10px] text-slate-400">Mexicali, B.C.</span>
+                    <span className="text-[10px] text-slate-400 font-mono">Mexicali, B.C.</span>
                   </div>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-slate-200 leading-relaxed font-sans">
                     {profile.description}
                   </p>
                 </div>
 
-                {/* Quick Action Matrix (iOS style touch buttons) */}
-                <div className="grid grid-cols-4 gap-2 text-center">
+                {/* Quick Action Matrix (iOS 27 Squircle Glass Widgets) */}
+                <div className="grid grid-cols-4 gap-2.5 text-center">
                   <a
                     href={`https://wa.me/${profile.contacts.whatsapp}?text=${encodeURIComponent(`Hola ${profile.businessName}, vi su catálogo digital y deseo información.`)}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-2xl bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-500/30 flex flex-col items-center justify-center gap-1.5 transition-colors"
+                    className="ios27-glass-interactive p-3.5 rounded-2xl border-emerald-500/30 hover:border-emerald-500/60 bg-emerald-950/40 flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 group shadow-lg"
                   >
-                    <MessageCircle className="w-5 h-5 text-emerald-400" />
-                    <span className="text-[10px] font-bold text-white">WhatsApp</span>
+                    <MessageCircle className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-white tracking-tight">WhatsApp</span>
                   </a>
 
                   <a
                     href={`tel:${profile.contacts.phone}`}
-                    className="p-3 rounded-2xl bg-[#151824] hover:bg-[#1a1e2d] border border-white/10 flex flex-col items-center justify-center gap-1.5 transition-colors"
+                    className="ios27-glass-interactive p-3.5 rounded-2xl border-red-500/30 hover:border-red-500/60 bg-red-950/30 flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 group shadow-lg"
                   >
-                    <PhoneCall className="w-5 h-5 text-red-400" />
-                    <span className="text-[10px] font-bold text-white">Llamar</span>
+                    <PhoneCall className="w-5 h-5 text-red-400 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-white tracking-tight">Llamar</span>
                   </a>
 
                   <button
                     onClick={() => setActiveTab('contact')}
-                    className="p-3 rounded-2xl bg-[#151824] hover:bg-[#1a1e2d] border border-white/10 flex flex-col items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    className="ios27-glass-interactive p-3.5 rounded-2xl border-amber-500/30 hover:border-amber-500/60 bg-amber-950/30 flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 group shadow-lg cursor-pointer"
                   >
-                    <MapPin className="w-5 h-5 text-amber-400" />
-                    <span className="text-[10px] font-bold text-white">Ubicación</span>
+                    <MapPin className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-white tracking-tight">Ubicación</span>
                   </button>
 
                   <button
                     onClick={() => setActiveTab('assistant')}
-                    className="p-3 rounded-2xl bg-red-950/60 hover:bg-red-900/60 border border-red-500/40 flex flex-col items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    className="ios27-glass-interactive p-3.5 rounded-2xl border-red-500/40 hover:border-red-500/80 bg-red-950/50 flex flex-col items-center justify-center gap-1.5 transition-all active:scale-95 group shadow-lg cursor-pointer"
                   >
-                    <Bot className="w-5 h-5 text-red-400" />
-                    <span className="text-[10px] font-bold text-white">Asistente</span>
+                    <Bot className="w-5 h-5 text-red-400 group-hover:scale-110 transition-transform" />
+                    <span className="text-[10px] font-bold text-white tracking-tight">Asistente</span>
                   </button>
                 </div>
 
-                {/* Featured Products Carousel / Grid */}
+                {/* Featured Products Carousel / Grid (iOS 27 Glass Cards) */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-white font-heading">
-                      Especialidades Destacadas
+                    <h4 className="text-sm font-extrabold text-white font-heading tracking-tight flex items-center gap-2">
+                      <span>Especialidades Destacadas</span>
+                      <span className="text-[10px] font-mono text-red-400 bg-red-950/80 px-2 py-0.5 rounded-full border border-red-500/30">
+                        TOP
+                      </span>
                     </h4>
                     <button
                       onClick={() => setActiveTab('catalog')}
-                      className="text-xs text-red-400 hover:text-red-300 font-semibold flex items-center gap-1 cursor-pointer"
+                      className="text-xs text-red-400 hover:text-red-300 font-bold flex items-center gap-1 cursor-pointer transition-colors"
                     >
                       Ver todo ({profile.products.length}) <ArrowRight className="w-3 h-3" />
                     </button>
@@ -464,16 +559,16 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
                       <div
                         key={product.id}
                         onClick={() => setSelectedProduct(product)}
-                        className="p-2.5 rounded-2xl bg-[#141620] hover:bg-[#191c28] border border-white/10 flex items-center gap-3 transition-colors cursor-pointer group"
+                        className="ios27-glass-interactive p-3 rounded-2xl border border-white/10 hover:border-red-500/50 flex items-center gap-3 transition-all cursor-pointer group shadow-lg"
                       >
                         <img
                           src={product.image}
                           alt={product.name}
-                          className="w-16 h-16 rounded-xl object-cover flex-shrink-0"
+                          className="w-16 h-16 rounded-xl object-cover flex-shrink-0 border border-white/10 group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="flex-1 min-w-0">
                           {product.badge && (
-                            <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-950 text-red-300 border border-red-500/30 font-semibold uppercase font-mono">
+                            <span className="text-[9px] px-1.5 py-0.5 rounded-md bg-red-950/90 text-red-300 border border-red-500/40 font-bold uppercase font-mono tracking-wider">
                               {product.badge}
                             </span>
                           )}
@@ -483,8 +578,8 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
                           <p className="text-[10px] text-slate-400 truncate">
                             {product.description}
                           </p>
-                          <p className="text-xs font-extrabold text-red-400 mt-1">
-                            {product.price || 'Consultar'}
+                          <p className="text-xs font-black text-red-400 mt-1 flex items-center gap-1">
+                            <span>{product.price || 'Consultar'}</span>
                           </p>
                         </div>
                       </div>
@@ -492,20 +587,20 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
                   </div>
                 </div>
 
-                {/* Promotional Banner */}
-                <div className="p-4 rounded-2xl bg-gradient-to-r from-red-950 via-[#1e131d] to-[#12131d] border border-red-500/30 space-y-2">
+                {/* Promotional Banner (iOS 27 Liquid Crimson) */}
+                <div className="p-4.5 rounded-3xl bg-gradient-to-r from-red-950/90 via-[#23121d] to-[#0e1019] border border-red-500/40 space-y-2.5 shadow-[0_10px_30px_rgba(225,29,72,0.2)]">
                   <div className="flex items-center gap-2">
-                    <Sparkles className="w-4 h-4 text-red-400" />
-                    <span className="text-xs font-bold text-white font-heading">
+                    <Sparkles className="w-4 h-4 text-red-400 animate-pulse" />
+                    <span className="text-xs font-extrabold text-white font-heading tracking-wide">
                       Atención Personalizada en Mexicali
                     </span>
                   </div>
-                  <p className="text-[11px] text-slate-300">
-                    Pregunta a nuestro Asistente Inteligente por disponibilidad, reservas o cotizaciones especiales.
+                  <p className="text-[11px] text-slate-300 leading-relaxed">
+                    Pregunta a nuestro Asistente Inteligente por disponibilidad, reservas o cotizaciones especiales en tiempo real.
                   </p>
                   <button
                     onClick={() => setActiveTab('assistant')}
-                    className="w-full py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                    className="w-full py-2.5 rounded-2xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-xs font-bold text-white flex items-center justify-center gap-2 shadow-lg shadow-red-950/50 transition-all cursor-pointer active:scale-98"
                   >
                     <span>Iniciar Chat con Asistente</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -937,60 +1032,82 @@ export const MiniAppPremiumExperience: React.FC<MiniAppPremiumExperienceProps> =
 
           </div>
 
-          {/* Bottom Dock Navigation Bar (iOS Tab Bar Style with Micro-Animations) */}
-          <div className="flex-shrink-0 bg-[#0d0f17] border-t border-white/10 px-2 py-2 flex items-center justify-around select-none">
-            <button
-              onClick={() => setActiveTab('home')}
-              className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all duration-200 cursor-pointer active:scale-90 ${
-                activeTab === 'home' ? 'text-red-500 font-bold scale-105' : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Home className={`w-5 h-5 transition-transform ${activeTab === 'home' ? '-translate-y-0.5' : ''}`} />
-              <span className="text-[10px]">Inicio</span>
-            </button>
+          {/* iOS 27 Floating Frosted Glass Dock */}
+          <div className="absolute bottom-2 left-2.5 right-2.5 z-30 select-none">
+            <div className="ios27-dock rounded-full px-2 py-1.5 flex items-center justify-around shadow-2xl">
+              <button
+                onClick={() => setActiveTab('home')}
+                className={`relative flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${
+                  activeTab === 'home' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {activeTab === 'home' && (
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-700 shadow-[0_0_18px_rgba(220,38,38,0.8)] -z-10" />
+                )}
+                <Home className="w-4 h-4" />
+                <span className="text-[10px] font-bold">Inicio</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('catalog')}
-              className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all duration-200 cursor-pointer active:scale-90 ${
-                activeTab === 'catalog' ? 'text-red-500 font-bold scale-105' : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <ShoppingBag className={`w-5 h-5 transition-transform ${activeTab === 'catalog' ? '-translate-y-0.5' : ''}`} />
-              <span className="text-[10px]">Catálogo</span>
-            </button>
+              <button
+                onClick={() => setActiveTab('catalog')}
+                className={`relative flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${
+                  activeTab === 'catalog' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {activeTab === 'catalog' && (
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-700 shadow-[0_0_18px_rgba(220,38,38,0.8)] -z-10" />
+                )}
+                <ShoppingBag className="w-4 h-4" />
+                <span className="text-[10px] font-bold">Catálogo</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('gallery')}
-              className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all duration-200 cursor-pointer active:scale-90 ${
-                activeTab === 'gallery' ? 'text-red-500 font-bold scale-105' : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <ImageIcon className={`w-5 h-5 transition-transform ${activeTab === 'gallery' ? '-translate-y-0.5' : ''}`} />
-              <span className="text-[10px]">Galería</span>
-            </button>
+              <button
+                onClick={() => setActiveTab('gallery')}
+                className={`relative flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${
+                  activeTab === 'gallery' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {activeTab === 'gallery' && (
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-700 shadow-[0_0_18px_rgba(220,38,38,0.8)] -z-10" />
+                )}
+                <ImageIcon className="w-4 h-4" />
+                <span className="text-[10px] font-bold">Galería</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('assistant')}
-              className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all duration-200 cursor-pointer relative active:scale-90 ${
-                activeTab === 'assistant' ? 'text-red-500 font-bold scale-105' : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <div className="relative">
-                <Bot className={`w-5 h-5 transition-transform ${activeTab === 'assistant' ? '-translate-y-0.5' : ''}`} />
-                <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-              </div>
-              <span className="text-[10px]">Asistente</span>
-            </button>
+              <button
+                onClick={() => setActiveTab('assistant')}
+                className={`relative flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${
+                  activeTab === 'assistant' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {activeTab === 'assistant' && (
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-700 shadow-[0_0_18px_rgba(220,38,38,0.8)] -z-10" />
+                )}
+                <div className="relative">
+                  <Bot className="w-4 h-4" />
+                  <span className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full bg-red-400 animate-ping" />
+                </div>
+                <span className="text-[10px] font-bold">Asistente</span>
+              </button>
 
-            <button
-              onClick={() => setActiveTab('contact')}
-              className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all duration-200 cursor-pointer active:scale-90 ${
-                activeTab === 'contact' ? 'text-red-500 font-bold scale-105' : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <PhoneCall className={`w-5 h-5 transition-transform ${activeTab === 'contact' ? '-translate-y-0.5' : ''}`} />
-              <span className="text-[10px]">Contacto</span>
-            </button>
+              <button
+                onClick={() => setActiveTab('contact')}
+                className={`relative flex flex-col items-center gap-0.5 py-1.5 px-3 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${
+                  activeTab === 'contact' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                {activeTab === 'contact' && (
+                  <span className="absolute inset-0 rounded-full bg-gradient-to-r from-red-600 to-red-700 shadow-[0_0_18px_rgba(220,38,38,0.8)] -z-10" />
+                )}
+                <PhoneCall className="w-4 h-4" />
+                <span className="text-[10px] font-bold">Contacto</span>
+              </button>
+            </div>
+
+            {/* iOS 27 Curved Home Indicator Line */}
+            <div className="w-full flex justify-center pt-1.5 pb-0.5">
+              <div className="w-28 h-1 rounded-full bg-white/30 backdrop-blur-sm shadow-sm" />
+            </div>
           </div>
 
         </div>
