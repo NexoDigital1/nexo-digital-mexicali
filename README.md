@@ -1,10 +1,12 @@
 # NEXO DIGITAL MEXICALI — Experience 2.0
 > **«CONECTANDO A MEXICALI AL MUNDO»**
 
-[![Demo en Vivo](https://img.shields.io/badge/PROBAR%20APP%20EN%20VIVO-CLIC%20AQUÍ-DC2626?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ais-pre-acwjc6lek3xfmpfvf4imya-77939428326.us-east1.run.app)
+[![Demo en Vivo en GitHub Pages](https://img.shields.io/badge/PROBAR%20APP%20EN%20VIVO%20(GITHUB%20PAGES)-CLIC%20AQUÍ-DC2626?style=for-the-badge&logo=github&logoColor=white)](https://nexodigital1.github.io/nexo-digital-mexicali/)
 
-### 🌐 Enlace Directo para Probar la App en el Celular o Navegador:
-👉 **[https://ais-pre-acwjc6lek3xfmpfvf4imya-77939428326.us-east1.run.app](https://ais-pre-acwjc6lek3xfmpfvf4imya-77939428326.us-east1.run.app)**
+### 🌐 Enlace Oficial en Vivo para Ver y Probar la App en Cualquier Celular o PC:
+👉 **[https://nexodigital1.github.io/nexo-digital-mexicali/](https://nexodigital1.github.io/nexo-digital-mexicali/)**
+
+> ⚡ **¡Ya está activa y en línea!** No requiere descargas, funciona de inmediato en iPhone, Android, tabletas o computadoras. Incluye el simulador NFC 3D, catálogo interactivo con pedidos por WhatsApp, calculadora de ahorro, cotizador y generador de acrílicos para mesas.
 
 ---
 
