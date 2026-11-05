@@ -1,0 +1,6 @@
+{
+  "name": "NEXO DIGITAL MEXICALI — Conectando a Mexicali al Mundo",
+  "description": "Plataforma comercial interactiva y demostrador de soluciones digitales de NEXO DIGITAL MEXICALI: NFC Mini App Start y Mini App Comercial Premium con catálogo interactivo, chatbot inteligente, simulador NFC/QR y panel de personalización.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
