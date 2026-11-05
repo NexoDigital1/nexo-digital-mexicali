@@ -10,7 +10,7 @@
   body {
     font-family: var(--font-body);
     color: #0f172a;
-    background-color: #08090d;
+    background-color: #ffffff;
     overflow-x: hidden;
   }
 
@@ -32,12 +32,12 @@
 }
 
 .chrome-border {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.8);
 }
 
 .glass-panel-dark {
-  background: rgba(16, 18, 26, 0.82);
+  background: rgba(16, 18, 26, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -45,42 +45,63 @@
 
 .glass-panel-light {
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 20px 40px -15px rgba(220, 38, 38, 0.05);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.06), 0 20px 40px -15px rgba(220, 38, 38, 0.04);
 }
 
-/* iOS 27 Liquid Glass & Specular Obsidian Styling */
+/* iOS 27 Liquid Glass & White Ceramic Frost Styling */
 .ios27-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.85) 100%);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+  color: #0f172a;
+}
+
+.ios27-glass-dark {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.2), 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  color: #f8fafc;
 }
 
 .ios27-glass-interactive {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.88) 100%);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 4px 20px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 18px rgba(0, 0, 0, 0.06);
+  color: #0f172a;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ios27-glass-interactive:hover {
   border-color: rgba(225, 29, 72, 0.45);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 30px rgba(225, 29, 72, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1), 0 8px 25px rgba(225, 29, 72, 0.15);
   transform: translateY(-1px);
 }
 
 .ios27-dock {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 0 25px rgba(225, 29, 72, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  color: #0f172a;
+}
+
+.ios27-dock-dark {
   background: rgba(10, 12, 18, 0.78);
   backdrop-filter: blur(36px) saturate(200%);
   -webkit-backdrop-filter: blur(36px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(225, 29, 72, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  color: #f8fafc;
 }
 
 .ios27-specular {
@@ -95,7 +116,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
   pointer-events: none;
 }
 
@@ -204,14 +225,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(241, 245, 249, 0.9);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(220, 38, 38, 0.4);
+  background: rgba(220, 38, 38, 0.45);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(220, 38, 38, 0.7);
+  background: rgba(220, 38, 38, 0.8);
 }
