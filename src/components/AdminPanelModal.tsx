@@ -122,6 +122,14 @@ export const AdminPanelModal: React.FC<AdminPanelModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
+            <a
+              href="/api/download-project"
+              download="nexo-digital-mexicali-v2.tar.gz"
+              className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors"
+              title="Descargar paquete completo del proyecto para subir a GitHub"
+            >
+              <span>Descargar Proyecto (.tar.gz)</span>
+            </a>
             {savedNotification && (
               <span className="text-xs text-emerald-400 font-bold flex items-center gap-1 animate-in fade-in">
                 <Check className="w-3.5 h-3.5" /> ¡Guardado!

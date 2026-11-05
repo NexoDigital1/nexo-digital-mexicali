@@ -127,6 +127,20 @@ app.get('/api/ai-status', (req, res) => {
   });
 });
 
+// Endpoint to download entire clean codebase
+app.get('/api/download-project', async (req, res) => {
+  try {
+    const { execSync } = await import('child_process');
+    const archivePath = '/tmp/nexo-digital-mexicali.tar.gz';
+    execSync('tar --exclude="./node_modules" --exclude="./dist" -czf /tmp/nexo-digital-mexicali.tar.gz .', {
+      cwd: __dirname,
+    });
+    res.download(archivePath, 'nexo-digital-mexicali-v2.tar.gz');
+  } catch (err: any) {
+    res.status(500).json({ error: 'Error generating archive' });
+  }
+});
+
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
     const { createServer: createViteServer } = await import('vite');
