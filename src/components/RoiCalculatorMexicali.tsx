@@ -26,33 +26,33 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
   };
 
   return (
-    <section id="calculadora-roi" className="py-20 lg:py-28 bg-[#0b0d14] relative overflow-hidden">
+    <section id="calculadora-roi" className="py-20 lg:py-28 bg-slate-50/60 relative overflow-hidden border-t border-slate-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-xs font-mono text-red-300">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-mono text-red-600 font-bold">
             <Calculator className="w-3.5 h-3.5" />
             <span>MÉTRICAS & IMPACTO ECONÓMICO</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
             ¿CUÁNTO DINERO PIERDE TU NEGOCIO <br />
             <span className="metallic-red-text">EN TARJETAS DE PAPEL Y VENTAS PERDIDAS?</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             Calcula en segundos el ahorro y las ventas adicionales que una presencia digital inteligente generará para tu comercio en Mexicali.
           </p>
         </div>
 
         {/* Interactive Calculator Body */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-[#121420] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/50">
           
           {/* Sliders Input Column (Col 6) */}
           <div className="lg:col-span-6 space-y-7">
             <div>
-              <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-white mb-2">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-900 mb-2">
                 <span>Clientes o prospectos que te contactan al día:</span>
-                <span className="text-base font-black text-red-400 font-mono">{dailyCustomers} clientes/día</span>
+                <span className="text-base font-black text-red-600 font-mono">{dailyCustomers} clientes/día</span>
               </div>
               <input
                 type="range"
@@ -61,7 +61,7 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
                 step="5"
                 value={dailyCustomers}
                 onChange={(e) => setDailyCustomers(Number(e.target.value))}
-                className="w-full accent-red-600 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-red-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>5 al día</span>
@@ -71,9 +71,9 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
             </div>
 
             <div>
-              <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-white mb-2">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-900 mb-2">
                 <span>Ticket o venta promedio por cliente:</span>
-                <span className="text-base font-black text-red-400 font-mono">${averageTicket} MXN</span>
+                <span className="text-base font-black text-red-600 font-mono">${averageTicket} MXN</span>
               </div>
               <input
                 type="range"
@@ -82,7 +82,7 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
                 step="25"
                 value={averageTicket}
                 onChange={(e) => setAverageTicket(Number(e.target.value))}
-                className="w-full accent-red-600 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-red-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>$50 MXN (Tacos/Café)</span>
@@ -92,9 +92,9 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
             </div>
 
             <div>
-              <div className="flex items-center justify-between text-xs sm:text-sm font-semibold text-white mb-2">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-900 mb-2">
                 <span>Gasto anual actual en papel (tarjetas, volantes, menús):</span>
-                <span className="text-base font-black text-slate-300 font-mono">${paperPrintSpend} MXN/año</span>
+                <span className="text-base font-black text-slate-700 font-mono">${paperPrintSpend} MXN/año</span>
               </div>
               <input
                 type="range"
@@ -103,7 +103,7 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
                 step="200"
                 value={paperPrintSpend}
                 onChange={(e) => setPaperPrintSpend(Number(e.target.value))}
-                className="w-full accent-red-600 bg-slate-800 h-2 rounded-lg cursor-pointer"
+                className="w-full accent-red-600 bg-slate-200 h-2 rounded-lg cursor-pointer"
               />
               <div className="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
                 <span>$800 MXN</span>
@@ -112,8 +112,8 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
               </div>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-amber-950/40 border border-amber-500/30 text-xs text-amber-200 flex items-start gap-2.5">
-              <AlertCircle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+            <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
+              <AlertCircle className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
               <span>
                 <strong>Dato real del comercio:</strong> El 88% de las tarjetas de papel tradicionales se pierden o terminan en la basura en menos de 7 días. Con NFC, tu contacto queda guardado para siempre en la agenda de tu cliente.
               </span>
@@ -121,48 +121,48 @@ Me interesa una propuesta comercial para implementar mi Tarjeta NFC y Mini App.`
           </div>
 
           {/* Results Column (Col 6) */}
-          <div className="lg:col-span-6 bg-[#0a0b10] border border-white/10 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-6 bg-slate-50/80 border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
             <div>
-              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-red-400">
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-red-600">
                 PROYECCIÓN COMERCIAL ESTIMADA
               </span>
-              <h3 className="text-xl sm:text-2xl font-black text-white font-heading mt-1">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-900 font-heading mt-1">
                 Retorno para tu Negocio en Mexicali
               </h3>
             </div>
 
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-slate-400">Ahorro anual en tarjetas de papel e impresiones:</p>
-                  <p className="text-xl sm:text-2xl font-black text-emerald-400 font-mono">
+                  <p className="text-xs text-slate-500">Ahorro anual en tarjetas de papel e impresiones:</p>
+                  <p className="text-xl sm:text-2xl font-black text-emerald-600 font-mono">
                     ${annualSavedPaper.toLocaleString('es-MX')} MXN
                   </p>
                 </div>
-                <CheckCircle2 className="w-6 h-6 text-emerald-400 flex-shrink-0" />
+                <CheckCircle2 className="w-6 h-6 text-emerald-600 flex-shrink-0" />
               </div>
 
-              <div className="p-4 rounded-xl bg-gradient-to-r from-red-950/70 to-[#1e131d] border border-red-500/40 flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-gradient-to-r from-red-50 to-white border border-red-200 shadow-xs flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-slate-300">Ventas extra estimadas al mes por catálogo y WhatsApp:</p>
-                  <p className="text-2xl sm:text-3xl font-black text-white font-mono">
-                    +${additionalMonthlyRevenue.toLocaleString('es-MX')} <span className="text-xs text-red-400">MXN/mes</span>
+                  <p className="text-xs text-slate-600 font-medium">Ventas extra estimadas al mes por catálogo y WhatsApp:</p>
+                  <p className="text-2xl sm:text-3xl font-black text-slate-900 font-mono">
+                    +${additionalMonthlyRevenue.toLocaleString('es-MX')} <span className="text-xs text-red-600 font-bold">MXN/mes</span>
                   </p>
-                  <p className="text-[10px] text-slate-400 mt-0.5 font-mono">
+                  <p className="text-[10px] text-slate-500 mt-0.5 font-mono">
                     (~{additionalMonthlySalesCount} pedidos o citas cerradas adicionales)
                   </p>
                 </div>
-                <TrendingUp className="w-7 h-7 text-red-500 flex-shrink-0" />
+                <TrendingUp className="w-7 h-7 text-red-600 flex-shrink-0" />
               </div>
             </div>
 
-            <div className="pt-2 border-t border-white/10">
-              <p className="text-xs text-slate-400 mb-3 text-center sm:text-left">
+            <div className="pt-2 border-t border-slate-200">
+              <p className="text-xs text-slate-600 mb-3 text-center sm:text-left">
                 El costo de tu tarjeta NFC y Mini App se amortiza típicamente en los primeros <strong>7 a 15 días</strong> de uso.
               </p>
               <button
                 onClick={handleConsultWhatsApp}
-                className="w-full py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-500 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xl shadow-red-600/35 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
+                className="w-full py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-500 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-xl shadow-red-600/30 hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Solicitar Asesoría con estas Métricas por WhatsApp</span>

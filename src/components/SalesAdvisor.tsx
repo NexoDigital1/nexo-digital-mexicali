@@ -54,30 +54,28 @@ Me interesa solicitar información comercial para mi negocio:
   };
 
   const handleSendWhatsApp = () => {
-    // Uses official WhatsApp link without inventing fake phone numbers
     const msg = generateWhatsAppMessage();
-    // If WhatsApp number is configured, use it, else use generic wa.me link
     window.open(`https://wa.me/?text=${msg}`, '_blank');
   };
 
   return (
-    <section id="asesor" className="py-20 lg:py-32 bg-[#0c0d13] relative overflow-hidden">
+    <section id="asesor" className="py-20 lg:py-32 bg-slate-50/60 relative overflow-hidden border-t border-slate-200">
       {/* Decorative gradient overlay */}
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-xs font-mono text-red-300">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-mono text-red-600 font-bold">
             <Sparkles className="w-3.5 h-3.5" />
             <span>ASESOR COMERCIAL INTERACTIVO</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
             ¿QUÉ SOLUCIÓN NECESITA <br />
             <span className="metallic-red-text">TU NEGOCIO?</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
+          <p className="text-slate-600 text-sm sm:text-base">
             Selecciona tu objetivo y te ayudaremos a estructurar la mejor estrategia digital para cautivar a tus clientes en Mexicali.
           </p>
         </div>
@@ -90,34 +88,34 @@ Me interesa solicitar información comercial para mi negocio:
             onClick={() => setSelectedSolution('nfc_start')}
             className={`p-6 rounded-3xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
               selectedSolution === 'nfc_start'
-                ? 'bg-[#181a26] border-red-500 shadow-xl shadow-red-950/40 ring-1 ring-red-500'
-                : 'bg-[#12141c] border-white/10 hover:border-white/20'
+                ? 'bg-white border-red-600 shadow-xl shadow-red-500/10 ring-1 ring-red-600'
+                : 'bg-white/80 border-slate-200 hover:border-slate-300'
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-red-500">
+                <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-red-600 shadow-xs">
                   <CreditCard className="w-6 h-6" />
                 </div>
                 {selectedSolution === 'nfc_start' && (
-                  <CheckCircle2 className="w-5 h-5 text-red-500" />
+                  <CheckCircle2 className="w-5 h-5 text-red-600" />
                 )}
               </div>
-              <h4 className="text-lg font-bold text-white font-heading">
+              <h4 className="text-lg font-bold text-slate-900 font-heading">
                 Quiero una tarjeta NFC
               </h4>
-              <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+              <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 Ideal si buscas una tarjeta física de presentación inteligente que comparta tus datos al instante sin internet y dirija a tus clientes a tu WhatsApp.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-              <span className="text-red-400 font-semibold font-mono">NFC START</span>
+            <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+              <span className="text-red-600 font-bold font-mono">NFC START</span>
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
                   onOpenNfcDemo();
                 }}
-                className="text-slate-300 hover:text-white underline text-[11px]"
+                className="text-slate-600 hover:text-red-600 underline text-[11px] font-semibold cursor-pointer"
               >
                 Ver demo
               </button>
@@ -129,34 +127,34 @@ Me interesa solicitar información comercial para mi negocio:
             onClick={() => setSelectedSolution('mini_app_premium')}
             className={`p-6 rounded-3xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
               selectedSolution === 'mini_app_premium'
-                ? 'bg-[#181a26] border-red-500 shadow-xl shadow-red-950/40 ring-1 ring-red-500'
-                : 'bg-[#12141c] border-white/10 hover:border-white/20'
+                ? 'bg-white border-red-600 shadow-xl shadow-red-500/10 ring-1 ring-red-600'
+                : 'bg-white/80 border-slate-200 hover:border-slate-300'
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-red-950/60 border border-red-500/30 flex items-center justify-center text-red-400">
+                <div className="w-12 h-12 rounded-2xl bg-red-100/70 border border-red-200 flex items-center justify-center text-red-600 shadow-xs">
                   <Smartphone className="w-6 h-6" />
                 </div>
                 {selectedSolution === 'mini_app_premium' && (
-                  <CheckCircle2 className="w-5 h-5 text-red-500" />
+                  <CheckCircle2 className="w-5 h-5 text-red-600" />
                 )}
               </div>
-              <h4 className="text-lg font-bold text-white font-heading">
+              <h4 className="text-lg font-bold text-slate-900 font-heading">
                 Quiero una mini app comercial
               </h4>
-              <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+              <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 Ideal para negocios con catálogo, productos, galería, horarios y que desean un asistente virtual inteligente para responder dudas y recibir pedidos.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-              <span className="text-red-400 font-semibold font-mono">MINI APP PREMIUM</span>
+            <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+              <span className="text-red-600 font-bold font-mono">MINI APP PREMIUM</span>
               <button 
                 onClick={(e) => {
                   e.stopPropagation();
                   onOpenMiniAppDemo();
                 }}
-                className="text-slate-300 hover:text-white underline text-[11px]"
+                className="text-slate-600 hover:text-red-600 underline text-[11px] font-semibold cursor-pointer"
               >
                 Ver demo
               </button>
@@ -168,49 +166,49 @@ Me interesa solicitar información comercial para mi negocio:
             onClick={() => setSelectedSolution('both')}
             className={`p-6 rounded-3xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
               selectedSolution === 'both'
-                ? 'bg-[#181a26] border-red-500 shadow-xl shadow-red-950/40 ring-1 ring-red-500'
-                : 'bg-[#12141c] border-white/10 hover:border-white/20'
+                ? 'bg-white border-red-600 shadow-xl shadow-red-500/10 ring-1 ring-red-600'
+                : 'bg-white/80 border-slate-200 hover:border-slate-300'
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 to-red-800 text-white flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 to-red-700 text-white flex items-center justify-center shadow-md shadow-red-600/20">
                   <Layers className="w-6 h-6" />
                 </div>
                 {selectedSolution === 'both' && (
-                  <CheckCircle2 className="w-5 h-5 text-red-500" />
+                  <CheckCircle2 className="w-5 h-5 text-red-600" />
                 )}
               </div>
-              <h4 className="text-lg font-bold text-white font-heading">
+              <h4 className="text-lg font-bold text-slate-900 font-heading">
                 Quiero conocer ambas opciones
               </h4>
-              <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+              <p className="text-xs text-slate-600 mt-2 leading-relaxed">
                 El ecosistema completo: tarjeta física NFC para ti o tus colaboradores + Mini App comercial alojada en la web con catálogo y chatbot.
               </p>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-              <span className="text-red-400 font-semibold font-mono">PAQUETE COMPLETO</span>
-              <span className="text-slate-400 text-[11px]">Recomendado</span>
+            <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+              <span className="text-red-600 font-bold font-mono">PAQUETE COMPLETO</span>
+              <span className="text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full text-[11px] font-bold">Recomendado</span>
             </div>
           </div>
 
         </div>
 
         {/* Lead Capture and WhatsApp Inquiry Card */}
-        <div className="bg-[#141622] border border-white/10 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
-          <div className="border-b border-white/10 pb-4">
-            <h4 className="text-lg font-bold text-white font-heading">
+        <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl shadow-slate-200/50">
+          <div className="border-b border-slate-200 pb-4">
+            <h4 className="text-lg font-bold text-slate-900 font-heading">
               Configura tu solicitud para NEXO DIGITAL MEXICALI
             </h4>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Completa los datos básicos de tu negocio para generar tu solicitud comercial directa por WhatsApp.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Building2 className="w-3.5 h-3.5 text-red-500" />
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                <Building2 className="w-3.5 h-3.5 text-red-600" />
                 <span>Nombre de tu negocio o marca:</span>
               </label>
               <input
@@ -218,13 +216,13 @@ Me interesa solicitar información comercial para mi negocio:
                 value={businessName}
                 onChange={(e) => setBusinessName(e.target.value)}
                 placeholder="Ej. Taquería El Cachanilla, Clínica Dental, etc."
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0e1017] border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-red-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:outline-none focus:bg-white focus:border-red-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <User className="w-3.5 h-3.5 text-red-500" />
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                <User className="w-3.5 h-3.5 text-red-600" />
                 <span>Nombre del titular o responsable:</span>
               </label>
               <input
@@ -232,19 +230,19 @@ Me interesa solicitar información comercial para mi negocio:
                 value={contactName}
                 onChange={(e) => setContactName(e.target.value)}
                 placeholder="Ej. Ing. Carlos Mendoza"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0e1017] border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-red-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:outline-none focus:bg-white focus:border-red-500"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5 flex items-center gap-1.5">
-                <Briefcase className="w-3.5 h-3.5 text-red-500" />
+              <label className="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+                <Briefcase className="w-3.5 h-3.5 text-red-600" />
                 <span>Giro comercial en Mexicali:</span>
               </label>
               <select
                 value={industry}
                 onChange={(e) => setIndustry(e.target.value)}
-                className="w-full px-3.5 py-2.5 rounded-xl bg-[#0e1017] border border-white/10 text-white text-xs focus:outline-none focus:border-red-500"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-xs focus:outline-none focus:bg-white focus:border-red-500"
               >
                 <option value="Gastronomía / Restaurante / Café">Gastronomía / Restaurante / Café</option>
                 <option value="Salud / Dental / Médico">Salud / Dental / Médico</option>
@@ -257,11 +255,11 @@ Me interesa solicitar información comercial para mi negocio:
             </div>
 
             <div className="flex flex-col justify-end">
-              <label className="block text-xs font-semibold text-slate-300 mb-2">
+              <label className="block text-xs font-bold text-slate-700 mb-2">
                 ¿Requieres catálogo de productos o menú?
               </label>
               <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                <label className="flex items-center gap-2 text-xs text-slate-700 font-medium cursor-pointer">
                   <input
                     type="radio"
                     name="hasCatalog"
@@ -271,7 +269,7 @@ Me interesa solicitar información comercial para mi negocio:
                   />
                   <span>Sí, tengo productos/servicios</span>
                 </label>
-                <label className="flex items-center gap-2 text-xs text-slate-300 cursor-pointer">
+                <label className="flex items-center gap-2 text-xs text-slate-700 font-medium cursor-pointer">
                   <input
                     type="radio"
                     name="hasCatalog"
@@ -286,14 +284,14 @@ Me interesa solicitar información comercial para mi negocio:
           </div>
 
           {/* Action CTA Button */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
-            <div className="text-xs text-slate-400">
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200">
+            <div className="text-xs text-slate-500">
               <span>El número de WhatsApp de NEXO DIGITAL se configurará oficialmente. Este enlace genera el mensaje listo para enviar.</span>
             </div>
 
             <button
               onClick={handleSendWhatsApp}
-              className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap"
+              className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer whitespace-nowrap"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Solicitar Información Comercial por WhatsApp</span>

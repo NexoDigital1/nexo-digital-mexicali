@@ -96,20 +96,20 @@ export const NfcEducationGuide: React.FC<NfcEducationGuideProps> = ({
   ];
 
   return (
-    <section id="educacion" className="py-20 lg:py-32 bg-[#0a0b10] relative">
+    <section id="educacion" className="py-20 lg:py-32 bg-white relative border-t border-slate-200">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="text-center mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
-            <HelpCircle className="w-3.5 h-3.5 text-red-500" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-mono text-red-600 font-bold">
+            <HelpCircle className="w-3.5 h-3.5 text-red-600" />
             <span>GUÍA EDUCATIVA COMERCIAL</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-heading tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 font-heading tracking-tight">
             TODO LO QUE UN COMERCIANTE DE MEXICALI <br />
             <span className="metallic-red-text">DEBE SABER EN 5 MINUTOS</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base">
+          <p className="text-slate-600 text-sm sm:text-base">
             Tecnología transparente explicada de forma clara y sin tecnicismos complejos.
           </p>
         </div>
@@ -125,8 +125,8 @@ export const NfcEducationGuide: React.FC<NfcEducationGuideProps> = ({
                 key={item.id}
                 className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
                   isOpen
-                    ? 'bg-[#141624] border-red-500/40 shadow-xl'
-                    : 'bg-[#10121a] border-white/5 hover:border-white/15'
+                    ? 'bg-slate-50/90 border-red-500/40 shadow-lg shadow-slate-200/50'
+                    : 'bg-white border-slate-200 hover:border-slate-300'
                 }`}
               >
                 {/* Header Row */}
@@ -136,22 +136,22 @@ export const NfcEducationGuide: React.FC<NfcEducationGuideProps> = ({
                 >
                   <div className="flex items-center gap-3.5">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
-                      isOpen ? 'bg-red-600 text-white' : 'bg-white/5 text-slate-400'
+                      isOpen ? 'bg-red-600 text-white shadow-xs' : 'bg-slate-100 text-slate-600'
                     }`}>
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-sm sm:text-base font-bold text-white font-heading">
+                      <h4 className="text-sm sm:text-base font-bold text-slate-900 font-heading">
                         {item.title}
                       </h4>
-                      <p className="text-xs text-slate-400 mt-0.5">
+                      <p className="text-xs text-slate-500 mt-0.5">
                         {item.subtitle}
                       </p>
                     </div>
                   </div>
 
-                  <div className={`p-1.5 rounded-lg bg-white/5 text-slate-400 transition-transform ${
-                    isOpen ? 'rotate-180 text-white' : ''
+                  <div className={`p-1.5 rounded-lg bg-slate-100 text-slate-500 transition-transform ${
+                    isOpen ? 'rotate-180 text-red-600 bg-red-50' : ''
                   }`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
@@ -159,14 +159,14 @@ export const NfcEducationGuide: React.FC<NfcEducationGuideProps> = ({
 
                 {/* Expanded Content */}
                 {isOpen && (
-                  <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-white/10 space-y-4 text-xs sm:text-sm text-slate-300 animate-in fade-in duration-200">
+                  <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-slate-200 space-y-4 text-xs sm:text-sm text-slate-700 animate-in fade-in duration-200">
                     <p className="whitespace-pre-line leading-relaxed">
                       {item.answer}
                     </p>
 
-                    <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/30 flex items-start gap-2.5">
-                      <Sparkles className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-xs text-red-200 font-medium">
+                    <div className="p-3 rounded-xl bg-red-50 border border-red-200 flex items-start gap-2.5">
+                      <Sparkles className="w-4 h-4 text-red-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-xs text-red-950 font-medium">
                         <strong>Clave comercial:</strong> {item.highlight}
                       </span>
                     </div>
@@ -174,7 +174,7 @@ export const NfcEducationGuide: React.FC<NfcEducationGuideProps> = ({
                     <div className="pt-1 flex justify-end">
                       <button
                         onClick={item.action}
-                        className="text-xs font-bold text-red-400 hover:text-red-300 flex items-center gap-1.5 cursor-pointer"
+                        className="text-xs font-bold text-red-600 hover:text-red-700 flex items-center gap-1.5 cursor-pointer"
                       >
                         <span>{item.actionLabel}</span>
                         <span>→</span>

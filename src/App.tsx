@@ -29,7 +29,7 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08090d] text-slate-100 flex flex-col font-sans selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-red-600 selection:text-white">
       {/* Navigation Header */}
       <Navbar
         onOpenNfcDemo={() => setIsNfcModalOpen(true)}

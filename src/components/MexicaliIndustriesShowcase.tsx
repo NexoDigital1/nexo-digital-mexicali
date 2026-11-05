@@ -149,23 +149,23 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
   };
 
   return (
-    <section id="giros-mexicali" className="py-20 lg:py-32 bg-[#090a0f] relative overflow-hidden border-t border-white/5">
+    <section id="giros-mexicali" className="py-20 lg:py-32 bg-slate-50/60 relative overflow-hidden border-t border-slate-200">
       {/* Background glow */}
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-red-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/30 text-xs font-mono text-red-300">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-mono text-red-600 font-bold">
             <TrendingUp className="w-3.5 h-3.5" />
             <span>SOLUCIONES POR GIRO EN MEXICALI</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 font-heading tracking-tight">
             DISEÑADO PARA TU TIPO <br />
             <span className="metallic-red-text">DE NEGOCIO CACHANILLA</span>
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             No importa si tienes una taquería, clínica dental, taller, barbería, café o tienda. Activa tu giro y experimenta cómo se adaptan la tarjeta NFC y la Mini App con fotos y datos reales.
           </p>
         </div>
@@ -181,13 +181,13 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
                 onClick={() => handleActivateIndustry(ind.key)}
                 className={`p-3.5 rounded-2xl border text-left flex flex-col justify-between transition-all duration-200 cursor-pointer ${
                   isSelected
-                    ? 'bg-[#181a26] border-red-500 shadow-xl shadow-red-950/40 ring-1 ring-red-500 scale-[1.02]'
-                    : 'bg-[#11131c] border-white/10 hover:border-white/25 hover:bg-[#151722]'
+                    ? 'bg-white border-2 border-red-600 shadow-lg shadow-red-500/10 scale-[1.02]'
+                    : 'bg-white/80 border-slate-200 hover:border-slate-300 hover:bg-white shadow-xs'
                 }`}
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
-                    isSelected ? 'bg-red-600 text-white' : 'bg-white/5 text-slate-400'
+                    isSelected ? 'bg-red-600 text-white shadow-sm' : 'bg-slate-100 text-slate-600'
                   }`}>
                     <Icon className="w-4 h-4" />
                   </div>
@@ -196,10 +196,10 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
                   )}
                 </div>
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-white font-heading line-clamp-1">
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900 font-heading line-clamp-1">
                     {ind.title}
                   </h4>
-                  <p className="text-[10px] text-slate-400 mt-0.5 line-clamp-1">
+                  <p className="text-[10px] text-slate-500 mt-0.5 line-clamp-1">
                     {ind.sampleBiz}
                   </p>
                 </div>
@@ -209,26 +209,26 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
         </div>
 
         {/* Active Industry Showcase Card */}
-        <div className="bg-[#12141f] border-2 border-red-500/30 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div className="bg-white border-2 border-red-500/30 rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/60 relative overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             {/* Left Content (Col 7) */}
             <div className="lg:col-span-7 space-y-5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-red-950/80 text-red-300 border border-red-500/40">
+                <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-red-50 text-red-600 border border-red-200">
                   GIRO SELECCIONADO
                 </span>
-                <span className="text-xs text-slate-400 flex items-center gap-1">
-                  <MapPin className="w-3.5 h-3.5 text-red-500" />
+                <span className="text-xs text-slate-500 flex items-center gap-1 font-medium">
+                  <MapPin className="w-3.5 h-3.5 text-red-600" />
                   {current.address}
                 </span>
               </div>
 
               <div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
                   {current.sampleBiz}
                 </h3>
-                <p className="text-sm sm:text-base text-red-400 font-semibold mt-1">
+                <p className="text-sm sm:text-base text-red-600 font-bold mt-1">
                   «{current.tagline}»
                 </p>
               </div>
@@ -236,8 +236,8 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
               {/* Benefits Checklist */}
               <div className="space-y-2.5 pt-1">
                 {current.benefits.map((b, idx) => (
-                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                    <div className="w-5 h-5 rounded-full bg-red-600/20 text-red-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
+                    <div className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
                       <Check className="w-3.5 h-3.5" />
                     </div>
                     <span>{b}</span>
@@ -245,7 +245,7 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
                 ))}
               </div>
 
-              <div className="p-3.5 rounded-2xl bg-gradient-to-r from-red-950/40 to-transparent border border-red-500/20 text-xs text-red-200">
+              <div className="p-3.5 rounded-2xl bg-red-50/70 border border-red-200 text-xs text-red-900">
                 <strong>Impacto en Mexicali:</strong> {current.highlight}
               </div>
 
@@ -262,24 +262,24 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
 
                 <button
                   onClick={onOpenNfcDemo}
-                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 text-slate-200 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer border border-white/10 transition-colors"
+                  className="w-full sm:w-auto px-5 py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200/80 text-slate-800 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer border border-slate-200 transition-colors"
                 >
-                  <CreditCard className="w-4 h-4 text-red-400" />
+                  <CreditCard className="w-4 h-4 text-red-600" />
                   <span>Ver Tarjeta NFC del Giro</span>
                 </button>
               </div>
             </div>
 
             {/* Right Live Teaser Preview (Col 5) */}
-            <div className="lg:col-span-5 bg-[#0a0b10] p-5 rounded-2xl border border-white/10 shadow-xl space-y-4">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div className="lg:col-span-5 bg-slate-50/80 p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-xs font-mono font-bold text-white uppercase">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span className="text-xs font-mono font-bold text-slate-800 uppercase">
                     Datos Cargados en Vivo
                   </span>
                 </div>
-                <span className="text-[10px] text-red-400 font-mono">
+                <span className="text-[10px] text-red-600 font-mono font-bold">
                   {profile.products.length} productos / servicios
                 </span>
               </div>
@@ -290,13 +290,13 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
                   <img
                     src={profile.logoUrl}
                     alt={profile.businessName}
-                    className="w-12 h-12 rounded-xl object-cover border-2 border-red-500/40"
+                    className="w-12 h-12 rounded-xl object-cover border-2 border-red-500/40 shadow-xs"
                   />
                   <div className="min-w-0">
-                    <h5 className="font-bold text-white text-sm truncate">
+                    <h5 className="font-bold text-slate-900 text-sm truncate">
                       {profile.businessName}
                     </h5>
-                    <p className="text-[11px] text-slate-400 truncate">
+                    <p className="text-[11px] text-slate-600 truncate">
                       {profile.industry}
                     </p>
                     <p className="text-[10px] text-slate-500 font-mono truncate">
@@ -307,20 +307,20 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
 
                 {/* Sample product item */}
                 {profile.products[0] && (
-                  <div className="p-3 rounded-xl bg-white/5 border border-white/5 flex items-center gap-3">
+                  <div className="p-3 rounded-xl bg-white border border-slate-200/90 shadow-xs flex items-center gap-3">
                     <img
                       src={profile.products[0].image}
                       alt={profile.products[0].name}
                       className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-bold text-white truncate">
+                      <p className="text-xs font-bold text-slate-900 truncate">
                         {profile.products[0].name}
                       </p>
-                      <p className="text-[10px] text-slate-400 truncate">
+                      <p className="text-[10px] text-slate-500 truncate">
                         {profile.products[0].description}
                       </p>
-                      <span className="text-xs font-black text-red-400">
+                      <span className="text-xs font-black text-red-600">
                         {profile.products[0].price || 'Consultar'}
                       </span>
                     </div>
@@ -329,9 +329,9 @@ export const MexicaliIndustriesShowcase: React.FC<MexicaliIndustriesShowcaseProp
               </div>
 
               <div className="pt-2 text-center">
-                <p className="text-[11px] text-slate-400">
+                <p className="text-[11px] text-slate-500">
                   {justActivated === current.key ? (
-                    <span className="text-emerald-400 font-bold flex items-center justify-center gap-1 animate-in fade-in">
+                    <span className="text-emerald-600 font-bold flex items-center justify-center gap-1 animate-in fade-in">
                       <Check className="w-3.5 h-3.5" /> ¡Giro {current.title} activado en toda la plataforma!
                     </span>
                   ) : (

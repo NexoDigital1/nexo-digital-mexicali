@@ -233,19 +233,19 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
         
         {/* Teaser Tooltip */}
         {showTeaser && !isOpen && (
-          <div className="mb-2 max-w-xs p-3 rounded-2xl bg-[#141624] border border-red-500/40 text-white text-xs shadow-2xl animate-in slide-in-from-bottom-3 duration-300 relative flex items-start gap-2.5">
+          <div className="mb-2 max-w-xs p-3 rounded-2xl bg-white/95 backdrop-blur-xl border border-red-500/30 text-slate-800 text-xs shadow-xl animate-in slide-in-from-bottom-3 duration-300 relative flex items-start gap-2.5">
             <button
               onClick={() => setShowTeaser(false)}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-slate-800 border border-white/20 text-slate-400 hover:text-white flex items-center justify-center text-[10px]"
+              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-slate-100 border border-slate-300 text-slate-500 hover:text-slate-800 flex items-center justify-center text-[10px] cursor-pointer"
             >
               ×
             </button>
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-red-600 to-red-500 flex items-center justify-center flex-shrink-0 text-white shadow-md">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-red-600 to-red-500 flex items-center justify-center flex-shrink-0 text-white shadow-sm">
               <Bot className="w-4 h-4" />
             </div>
             <div>
-              <p className="font-bold text-red-400">¿Dudas sobre tu negocio?</p>
-              <p className="text-slate-300 text-[11px] mt-0.5 leading-snug">
+              <p className="font-bold text-red-600">¿Dudas sobre tu negocio?</p>
+              <p className="text-slate-600 text-[11px] mt-0.5 leading-snug">
                 Soy NEXO BOT. Pregúntame sobre tarjetas NFC y Mini Apps.
               </p>
               <button
@@ -254,7 +254,7 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
                   setIsOpen(true);
                   setHasUnread(false);
                 }}
-                className="mt-1.5 text-[10px] font-bold text-white bg-red-600 hover:bg-red-500 px-2.5 py-1 rounded-lg inline-flex items-center gap-1 cursor-pointer transition-colors"
+                className="mt-1.5 text-[10px] font-bold text-white bg-red-600 hover:bg-red-500 px-2.5 py-1 rounded-lg inline-flex items-center gap-1 cursor-pointer transition-colors shadow-xs"
               >
                 <span>Chatear ahora</span>
                 <ArrowRight className="w-3 h-3" />
@@ -270,24 +270,24 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
             setShowTeaser(false);
             setHasUnread(false);
           }}
-          className={`relative group w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-2xl transition-all duration-300 cursor-pointer ${
+          className={`relative group w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-xl transition-all duration-300 cursor-pointer ${
             isOpen 
-              ? 'bg-slate-800 rotate-90 border border-white/20' 
-              : 'bg-gradient-to-tr from-red-600 via-red-500 to-red-700 hover:scale-105 active:scale-95 animate-pulse-glow'
+              ? 'bg-slate-900 rotate-90 border border-slate-700' 
+              : 'bg-gradient-to-tr from-red-600 via-red-500 to-red-700 hover:scale-105 active:scale-95 animate-pulse-glow shadow-red-600/30'
           }`}
           title="Asistente Comercial NEXO BOT"
         >
           {isOpen ? (
-            <X className="w-6 h-6 text-slate-200" />
+            <X className="w-6 h-6 text-white" />
           ) : (
             <>
               <Bot className="w-7 h-7 drop-shadow-md group-hover:scale-110 transition-transform" />
               {hasUnread && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-400 border-2 border-black flex items-center justify-center text-[9px] font-bold text-black animate-ping">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-400 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white animate-ping">
                 </span>
               )}
               {hasUnread && (
-                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-400 border-2 border-black flex items-center justify-center text-[9px] font-bold text-black">
+                <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-600 border-2 border-white flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
                   1
                 </span>
               )}
@@ -298,28 +298,28 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
 
       {/* Floating Chat Window Modal */}
       {isOpen && (
-        <div className="fixed bottom-22 right-3 sm:right-6 z-40 w-[92vw] sm:w-[390px] h-[540px] max-h-[82vh] bg-[#0e1017] border-2 border-red-500/40 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+        <div className="fixed bottom-22 right-3 sm:right-6 z-40 w-[92vw] sm:w-[390px] h-[540px] max-h-[82vh] bg-white border-2 border-red-500/30 rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
           
           {/* Chat Window Header */}
-          <div className="px-4 py-3 bg-[#141624] border-b border-white/10 flex items-center justify-between flex-shrink-0">
+          <div className="px-4 py-3 bg-slate-50/90 border-b border-slate-200 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 to-red-500 text-white flex items-center justify-center shadow-md">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-red-600 to-red-500 text-white flex items-center justify-center shadow-sm">
                   <Bot className="w-5 h-5" />
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-[#141624]" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h4 className="font-extrabold text-white text-xs sm:text-sm font-heading">
+                  <h4 className="font-extrabold text-slate-900 text-xs sm:text-sm font-heading">
                     NEXO BOT
                   </h4>
-                  <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-red-950 text-red-300 border border-red-500/30">
+                  <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-red-50 text-red-600 border border-red-200 font-bold">
                     MEXICALI
                   </span>
                 </div>
-                <p className="text-[10px] text-slate-400 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <p className="text-[10px] text-slate-500 flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                   <span>{aiStatus.model}</span>
                 </p>
               </div>
@@ -338,13 +338,13 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
                   ]);
                 }}
                 title="Reiniciar chat"
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+                className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -352,34 +352,34 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
           </div>
 
           {/* Quick Preset Topics Banner for Small Businesses */}
-          <div className="px-3 py-2 bg-[#090a0f] border-b border-white/5 flex items-center gap-1.5 overflow-x-auto text-[10px] flex-shrink-0 select-none">
+          <div className="px-3 py-2 bg-slate-100/80 border-b border-slate-200 flex items-center gap-1.5 overflow-x-auto text-[10px] flex-shrink-0 select-none">
             <button
               onClick={() => handleSendPreset('¿Cómo ayuda NEXO DIGITAL a promocionar mi pequeño negocio en Mexicali?')}
-              className="px-2.5 py-1 rounded-full bg-red-950/70 hover:bg-red-900/70 text-red-300 font-bold whitespace-nowrap border border-red-500/40 cursor-pointer transition-colors"
+              className="px-2.5 py-1 rounded-full bg-red-50 hover:bg-red-100 text-red-700 font-bold whitespace-nowrap border border-red-200 cursor-pointer transition-colors"
             >
               Promover mi Negocio
             </button>
             <button
               onClick={() => handleSendPreset('¿Cuánto dinero ahorro al dejar las tarjetas de papel?')}
-              className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 whitespace-nowrap border border-white/5 cursor-pointer transition-colors"
+              className="px-2.5 py-1 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-semibold whitespace-nowrap border border-slate-200 cursor-pointer transition-colors shadow-xs"
             >
               Ahorro vs Papel
             </button>
             <button
               onClick={() => handleSendPreset('¿Qué diferencia hay entre NFC Start y Mini App?')}
-              className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 whitespace-nowrap border border-white/5 cursor-pointer transition-colors"
+              className="px-2.5 py-1 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-semibold whitespace-nowrap border border-slate-200 cursor-pointer transition-colors shadow-xs"
             >
               Diferencias
             </button>
             <button
               onClick={() => handleSendPreset('¿Qué tiempo tardan en entregar en Mexicali?')}
-              className="px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 whitespace-nowrap border border-white/5 cursor-pointer transition-colors"
+              className="px-2.5 py-1 rounded-full bg-white hover:bg-slate-50 text-slate-700 font-semibold whitespace-nowrap border border-slate-200 cursor-pointer transition-colors shadow-xs"
             >
               Tiempos
             </button>
             <button
               onClick={() => handleSendPreset('¿Cómo cotizo una solución para mi negocio?')}
-              className="px-2.5 py-1 rounded-full bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-300 whitespace-nowrap border border-emerald-500/30 cursor-pointer transition-colors"
+              className="px-2.5 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold whitespace-nowrap border border-emerald-200 cursor-pointer transition-colors"
             >
               Cotizar
             </button>
@@ -388,7 +388,7 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
           {/* Chat Messages Body */}
           <div 
             ref={chatEndRef}
-            className="flex-1 p-3.5 space-y-3 overflow-y-auto bg-[#0a0b10] text-xs"
+            className="flex-1 p-3.5 space-y-3 overflow-y-auto bg-slate-50/50 text-xs"
           >
             {messages.map((msg) => (
               <div
@@ -398,8 +398,8 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
                 <div
                   className={`max-w-[85%] rounded-2xl p-3 leading-relaxed ${
                     msg.sender === 'user'
-                      ? 'bg-gradient-to-r from-red-600 to-red-700 text-white rounded-br-none shadow-md'
-                      : 'bg-[#151724] text-slate-200 rounded-bl-none border border-white/10 shadow-sm'
+                      ? 'bg-gradient-to-r from-red-600 to-red-700 text-white rounded-br-none shadow-sm'
+                      : 'bg-white text-slate-800 rounded-bl-none border border-slate-200 shadow-xs'
                   }`}
                 >
                   <p className="whitespace-pre-line text-[11px] sm:text-xs">{msg.text}</p>
@@ -412,11 +412,11 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
                       <button
                         key={idx}
                         onClick={btn.action}
-                        className="text-[10px] font-semibold px-2.5 py-1 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white border border-white/10 flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm"
+                        className="text-[10px] font-semibold px-2.5 py-1 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border border-slate-200 flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
                       >
-                        {btn.icon === 'nfc' && <CreditCard className="w-3 h-3 text-red-400" />}
-                        {btn.icon === 'app' && <Smartphone className="w-3 h-3 text-red-400" />}
-                        {btn.icon === 'wa' && <MessageCircle className="w-3 h-3 text-emerald-400" />}
+                        {btn.icon === 'nfc' && <CreditCard className="w-3 h-3 text-red-600" />}
+                        {btn.icon === 'app' && <Smartphone className="w-3 h-3 text-red-600" />}
+                        {btn.icon === 'wa' && <MessageCircle className="w-3 h-3 text-emerald-600" />}
                         <span>{btn.label}</span>
                       </button>
                     ))}
@@ -426,17 +426,17 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
             ))}
 
             {isTyping && (
-              <div className="flex items-center gap-1.5 text-slate-400 text-xs py-1">
-                <div className="w-2 h-2 rounded-full bg-red-500 animate-bounce"></div>
-                <div className="w-2 h-2 rounded-full bg-red-500 animate-bounce delay-100"></div>
-                <div className="w-2 h-2 rounded-full bg-red-500 animate-bounce delay-200"></div>
+              <div className="flex items-center gap-1.5 text-slate-500 text-xs py-1">
+                <div className="w-2 h-2 rounded-full bg-red-600 animate-bounce"></div>
+                <div className="w-2 h-2 rounded-full bg-red-600 animate-bounce delay-100"></div>
+                <div className="w-2 h-2 rounded-full bg-red-600 animate-bounce delay-200"></div>
                 <span className="text-[10px] ml-1 font-mono">Nexo Bot analizando...</span>
               </div>
             )}
           </div>
 
           {/* Chat Input Footer */}
-          <div className="p-3 bg-[#11131d] border-t border-white/10 flex-shrink-0">
+          <div className="p-3 bg-white border-t border-slate-200 flex-shrink-0">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -449,20 +449,20 @@ export const NexoChatbotWidget: React.FC<NexoChatbotWidgetProps> = ({
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Pregunta a Nexo Bot sobre tus productos..."
-                className="flex-1 px-3.5 py-2.5 rounded-xl bg-[#171926] border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-red-500"
+                className="flex-1 px-3.5 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 text-xs focus:outline-none focus:bg-white focus:border-red-500"
               />
               <button
                 type="submit"
                 disabled={!inputMessage.trim()}
-                className="p-2.5 rounded-xl bg-red-600 hover:bg-red-500 disabled:opacity-40 text-white transition-colors cursor-pointer flex-shrink-0"
+                className="p-2.5 rounded-xl bg-red-600 hover:bg-red-500 disabled:opacity-40 text-white transition-colors cursor-pointer flex-shrink-0 shadow-xs"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
 
-            <div className="mt-1.5 flex items-center justify-between text-[9px] text-slate-500">
+            <div className="mt-1.5 flex items-center justify-between text-[9px] text-slate-400">
               <span>NEXO DIGITAL MEXICALI</span>
-              <span className="font-mono">CONECTANDO A MEXICALI AL MUNDO</span>
+              <span className="font-mono font-semibold text-slate-600">CONECTANDO A MEXICALI AL MUNDO</span>
             </div>
           </div>
 
