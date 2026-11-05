@@ -1,6 +1,13 @@
 # NEXO DIGITAL MEXICALI — Experience 2.0
 > **«CONECTANDO A MEXICALI AL MUNDO»**
 
+[![Demo en Vivo](https://img.shields.io/badge/PROBAR%20APP%20EN%20VIVO-CLIC%20AQUÍ-DC2626?style=for-the-badge&logo=google-chrome&logoColor=white)](https://ais-pre-acwjc6lek3xfmpfvf4imya-77939428326.us-east1.run.app)
+
+### 🌐 Enlace Directo para Probar la App en el Celular o Navegador:
+👉 **[https://ais-pre-acwjc6lek3xfmpfvf4imya-77939428326.us-east1.run.app](https://ais-pre-acwjc6lek3xfmpfvf4imya-77939428326.us-east1.run.app)**
+
+---
+
 Plataforma comercial interactiva y demostrador de soluciones digitales para pequeños y medianos comercios de **Mexicali, Baja California**. Desarrollada bajo una estética tecnológica inspirada en iOS y Android de nueva generación, combinando acabados en blanco prémium, negro elegante, acentos en rojo metálico, efectos de cristal (*glassmorphism*) y microanimaciones fluidas.
 
 ---
